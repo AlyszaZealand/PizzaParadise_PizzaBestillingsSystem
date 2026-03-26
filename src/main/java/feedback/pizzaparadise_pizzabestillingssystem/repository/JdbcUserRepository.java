@@ -18,7 +18,7 @@ public class JdbcUserRepository implements UserRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // (navn, email, adresse, bonuspoint).
+    // Navn, email, adresse, bonuspoint
     @Override
     public List<User> findAllUsers() {
         String sql = """
@@ -99,7 +99,7 @@ public class JdbcUserRepository implements UserRepository {
 
 
     @Override
-    public Optional<User> findByEmail(User user) {
+    public Optional<User> findByEmail(String email) {
         String sql = "SELECT * FROM `user` WHERE email = ?";
         List <User> results = jdbcTemplate.query(sql, (rs, rowNum) -> new User(
                 rs.getInt("id"),
@@ -107,7 +107,7 @@ public class JdbcUserRepository implements UserRepository {
                 rs.getString("email"),
                 rs.getString("address"),
                 rs.getInt("bonuspoints")
-        ), user.getEmail());
+        ), email);
         return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
     }
 }

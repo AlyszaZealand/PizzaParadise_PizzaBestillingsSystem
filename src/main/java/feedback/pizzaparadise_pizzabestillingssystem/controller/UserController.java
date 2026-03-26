@@ -20,20 +20,37 @@ public class UserController {
             this.userService = userService;
         }
 
-        @GetMapping
+        @GetMapping("/register")
         public String registerForm(Model model) {
             model.addAttribute("user", new User());
             return "register";
         }
 
-        @PostMapping
+        @PostMapping("/register/success")
         public String handleRegisterForm(@ModelAttribute("user") User user, Model model) {
             userService.createUser(user);
             model.addAttribute("user", user.getName());
             model.addAttribute("email", user.getEmail());
             model.addAttribute("address", user.getAddress());
+            return "success";
+        }
+
+        @GetMapping("/login")
+        public String loginForm(Model model) {
+            model.addAttribute("user", new User());
             return "login";
         }
+
+        @PostMapping("/login")
+        public String handleLoginForm(@ModelAttribute("user") String email, Model model) {
+            userService.userLogin(email);
+            return "OrderPizza";
+        }
+
+
+
+
+
 
 
 }

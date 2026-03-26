@@ -1,5 +1,12 @@
 package feedback.pizzaparadise_pizzabestillingssystem.repository;
 
+import org.springframework.dao.DataAccessException;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Properties;
+
 public class DatabaseConfig {
 //    public DB() {
 //        Properties props = new Properties();
@@ -17,6 +24,7 @@ public class DatabaseConfig {
 //        this.user = props.getProperty("db.user");
 //        this.password = props.getProperty("db.password");
 //
+//                spring.datasource
 //    }
 //
 //    public Connection getConnection() {
