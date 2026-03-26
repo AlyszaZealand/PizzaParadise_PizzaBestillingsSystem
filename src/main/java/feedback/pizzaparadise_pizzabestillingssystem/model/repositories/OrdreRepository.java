@@ -1,6 +1,7 @@
 package feedback.pizzaparadise_pizzabestillingssystem.model.repositories;
 
 import feedback.pizzaparadise_pizzabestillingssystem.model.Ordre;
+import feedback.pizzaparadise_pizzabestillingssystem.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,11 +10,11 @@ public interface OrdreRepository {
 
     void save(Ordre ordre);
 
-    Optional<Ordre> findById(int id);
+    Optional<Ordre> findById(Ordre ordre);
 
-    List<Ordre> findOrderByUser(int userId);
+    List<Ordre> findOrderByUser(User user);
 
-    void delete(int id);
+    void delete(Ordre ordre);
 
 
 }

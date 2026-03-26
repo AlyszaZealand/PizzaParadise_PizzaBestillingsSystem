@@ -7,7 +7,7 @@ public class User {
     private String name;
     private String email;
     private String address;
-    private int bonuspoints;
+    private int bonuspoints = 0;
 
     // Full Constructor with ID
     public User(int userID, String name, String email, String address, int bonuspoints) {

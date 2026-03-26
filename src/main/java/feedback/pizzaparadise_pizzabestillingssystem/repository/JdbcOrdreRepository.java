@@ -1,6 +1,7 @@
 package feedback.pizzaparadise_pizzabestillingssystem.repository;
 
 import feedback.pizzaparadise_pizzabestillingssystem.model.Ordre;
+import feedback.pizzaparadise_pizzabestillingssystem.model.User;
 import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.OrdreRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,7 +21,7 @@ public class JdbcOrdreRepository implements OrdreRepository {
     }
 
     //skal nok noget join for at vise pizza
-    public List<Ordre> findOrderByUser(int userId) {
+    public List<Ordre> findOrderByUser(User user) {
         String sql = """
                 SELECT o.id AS ordre_id, o.date, o.totalPrice,
                        p.id AS pizza_id, p.name AS pizza_name, p.price AS pizza_price
@@ -36,14 +37,14 @@ public class JdbcOrdreRepository implements OrdreRepository {
                         rs.getDouble("totalPrice"),
                         rs.getTimestamp("date").toLocalDateTime(),
                         rs.getInt("userid")
-                )
+                ), user.getUserID()
         );
     }
 
 
 
 
-    public Optional<Ordre> findById(int id) {
+    public Optional<Ordre> findById(Ordre ordreId) {
         String sql = """
             SELECT o.id, o.date, o.totalPrice, o.pizzaid, o.userid
             FROM ordre o
@@ -58,7 +59,7 @@ public class JdbcOrdreRepository implements OrdreRepository {
                             rs.getDouble("totalPrice"),
                             rs.getTimestamp("date").toLocalDateTime(),
                             rs.getInt("userid")
-                    ), id);
+                    ), ordreId.getOrdreID());
             return Optional.ofNullable(ordre);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
@@ -75,10 +76,10 @@ public class JdbcOrdreRepository implements OrdreRepository {
                 );
     }
 
-    public void delete(int id){
+    public void delete(Ordre ordre){
         String sql = "delete from ordre where id = ?";
 
-        jdbcTemplate.update(sql,id);
+        jdbcTemplate.update(sql,ordre.getOrdreID());
 
     }
 

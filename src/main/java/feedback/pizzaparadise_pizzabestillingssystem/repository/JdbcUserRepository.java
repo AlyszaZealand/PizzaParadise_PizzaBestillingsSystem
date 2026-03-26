@@ -19,7 +19,7 @@ public class JdbcUserRepository implements UserRepository {
     }
 
     // (navn, email, adresse, bonuspoint).
-//    @Override
+    @Override
     public List<User> findAllUsers() {
         String sql = """
                 SELECT u.id AS userID,
@@ -45,7 +45,7 @@ public class JdbcUserRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> findById(int userID) {
+    public Optional<User> findById(User user) {
         String sql = """
                 SELECT u.id AS userID,
                        u.name AS name,
@@ -64,7 +64,7 @@ public class JdbcUserRepository implements UserRepository {
                         rs.getString("email"),
                         rs.getString("address"),
                         rs.getInt("bonuspoints")
-                ), userID
+                ), user.getUserID()
         );
 
         if (list.isEmpty()) {
@@ -99,7 +99,7 @@ public class JdbcUserRepository implements UserRepository {
 
 
     @Override
-    public Optional<User> findByEmail(String email) {
+    public Optional<User> findByEmail(User user) {
         String sql = "SELECT * FROM `user` WHERE email = ?";
         List <User> results = jdbcTemplate.query(sql, (rs, rowNum) -> new User(
                 rs.getInt("id"),
@@ -107,7 +107,7 @@ public class JdbcUserRepository implements UserRepository {
                 rs.getString("email"),
                 rs.getString("address"),
                 rs.getInt("bonuspoints")
-        ), email);
+        ), user.getEmail());
         return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
     }
 }

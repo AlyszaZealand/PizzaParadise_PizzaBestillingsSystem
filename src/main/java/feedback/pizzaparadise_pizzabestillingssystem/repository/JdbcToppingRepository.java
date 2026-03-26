@@ -3,11 +3,13 @@ package feedback.pizzaparadise_pizzabestillingssystem.repository;
 import feedback.pizzaparadise_pizzabestillingssystem.model.Topping;
 import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.ToppingRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 // STEP 3
+@Repository
 public class JdbcToppingRepository implements ToppingRepository {
 
     private final JdbcTemplate jdbcTemplate;
