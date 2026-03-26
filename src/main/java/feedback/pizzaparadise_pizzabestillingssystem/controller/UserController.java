@@ -46,11 +46,4 @@ public class UserController {
             userService.userLogin(email);
             return "OrderPizza";
         }
-
-
-
-
-
-
-
 }

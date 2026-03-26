@@ -1,0 +1,16 @@
+package feedback.pizzaparadise_pizzabestillingssystem.exception;
+
+import java.util.List;
+
+public class ValidationException extends RuntimeException {
+    private final List<String> errors;
+
+    public ValidationException(List<String> errors) {
+        super("Validation fejl");
+        this.errors = errors;
+    }
+
+    public List<String> getErrors() {
+        return errors;
+    }
+}

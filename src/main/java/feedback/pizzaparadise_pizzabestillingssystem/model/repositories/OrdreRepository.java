@@ -10,11 +10,11 @@ public interface OrdreRepository {
 
     void save(Ordre ordre);
 
-    Optional<Ordre> findById(Ordre ordre);
+    Optional<Ordre> findById(int orderId);
 
-    List<Ordre> findOrderByUser(User user);
+    List<Ordre> findOrderByUser(int userid);
 
-    void delete(Ordre ordre);
+    void delete(int id);
 
 
 }

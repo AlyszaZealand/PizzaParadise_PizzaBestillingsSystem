@@ -2,16 +2,19 @@ package feedback.pizzaparadise_pizzabestillingssystem.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class HomePage {
 
     @GetMapping
     public String getHomePage() {
         return "homepage";
     }
+
+
 
 
 }

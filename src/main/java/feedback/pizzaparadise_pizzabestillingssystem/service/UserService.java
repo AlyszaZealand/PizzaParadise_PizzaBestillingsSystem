@@ -31,31 +31,35 @@ public class UserService {
        return errors;
     }
 
-    
+    public void updateUser(User user) {
+        List<String> errors = new ArrayList<>();
+        validateUsername(user.getName(), errors);
+        if(errors.isEmpty()){
+            userRepository.update(user);
+        }
+    }
+
+    public Optional<User> userLogin(String email){
+        return userRepository.findByEmail(email);
+    }
+
 
     public List<User> findAllUsers(){
        return userRepository.findAllUsers();
     }
 
-    public void getFindByEmail(String email){
-        userRepository.findByEmail(email);
-    }
-
-    private void getFindById(User user){
-        userRepository.findById(user);
-    }
-
-    private void getBonuspoints(User user){
-        user.getBonuspoints();
-    }
-
-//    public void addBonusPoint(User user){
-//        if(user.getUserID() == 2)
-//    }
-
-    public Optional<User> userLogin(String email){
+    public Optional<User> getFindByEmail(String email){
         return userRepository.findByEmail(email);
     }
+
+    public Optional<User> findById(int id){
+        return userRepository.findById(id);
+    }
+
+    private int getBonuspoints(User user){
+       return user.getBonuspoints();
+    }
+
 
 
     private void validateEmail(String email, List<String> errors){
@@ -69,7 +73,6 @@ public class UserService {
                 errors.add("Der er allerede en bruger med den email");
             }
         }
-
     }
 
     private void validateUsername(String name, List<String> errors){

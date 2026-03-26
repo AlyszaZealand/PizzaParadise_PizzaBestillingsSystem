@@ -22,56 +22,35 @@ public class JdbcUserRepository implements UserRepository {
     @Override
     public List<User> findAllUsers() {
         String sql = """
-                SELECT u.id AS userID,
-                       u.name AS name,
-                       u.email AS email,
-                       u.address AS address,
-                       u.bonuspoints AS bonuspoints
-                FROM user u
-                JOIN ordre o ON u.id = o.userID
+                SELECT id as userID,
+                name,
+                email,
+                address,
+                bonuspoints
+                FROM `user`
                 """;
-
-
-        return jdbcTemplate.query(sql, (rs, rowNum) ->
-                new User(
-                    rs.getInt("userID"),
-                    rs.getString("name"),
-                    rs.getString("email"),
-                    rs.getString("address"),
-                    rs.getInt("bonuspoints")
-
-                )
-        );
-    }
-
-    @Override
-    public Optional<User> findById(User user) {
-        String sql = """
-                SELECT u.id AS userID,
-                       u.name AS name,
-                       u.email AS email,
-                       u.address AS address,
-                       u.bonuspoints AS bonuspoints
-                FROM user u
-                JOIN ordre o ON u.id = o.userID
-                where u.id = ?;
-                """;
-
-        List<User> list = jdbcTemplate.query(sql, (rs, rowNum) ->
-                new User(
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new User(
                         rs.getInt("UserID"),
                         rs.getString("name"),
                         rs.getString("email"),
                         rs.getString("address"),
                         rs.getInt("bonuspoints")
-                ), user.getUserID()
-        );
+                ));
+    }
 
-        if (list.isEmpty()) {
-            return Optional.empty();
-        }
 
-        return Optional.of(list.get(0));
+    @Override
+    public Optional<User> findById(int id) {
+        String sql = "SELECT id as userID, name, email, address, bonuspoints FROM `user` where id = ?";
+        List<User> list = jdbcTemplate.query(sql, (rs, rowNum) -> new User(
+                        rs.getInt("UserID"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("address"),
+                        rs.getInt("bonuspoints")
+                ), id);
+
+        return list.isEmpty() ? Optional.empty() : Optional.of(list.get(0));
     }
 
     @Override
