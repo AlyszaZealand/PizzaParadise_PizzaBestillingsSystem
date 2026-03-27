@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bestilling gennemført</title>
+</head>
+<body>
+<h1>Tak for din bestilling!</h1>
+</body>
+    <h1>Tak for din bestilling! 🍕</h1>
+
+    <p>Du har bestilt en: <strong th:text="${pizzaNavn}">Pizza</strong></p>
+    <p>Total pris: <strong th:text="${totalPris + ' kr.'}">0 kr.</strong></p>
+
+    <hr>
+    <a th:href="@{/pizzapage}">Tilbage til oversigten</a> |
+    <a th:href="@{/myOrders}">Se min ordrehistorik</a>
+</html>

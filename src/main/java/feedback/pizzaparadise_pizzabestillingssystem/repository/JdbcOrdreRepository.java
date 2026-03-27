@@ -1,7 +1,6 @@
 package feedback.pizzaparadise_pizzabestillingssystem.repository;
 
 import feedback.pizzaparadise_pizzabestillingssystem.model.Ordre;
-import feedback.pizzaparadise_pizzabestillingssystem.model.User;
 import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.OrdreRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

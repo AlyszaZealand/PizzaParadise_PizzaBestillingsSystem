@@ -39,13 +39,12 @@ public class PizzaService {
     }
 
     // From topping repo
-    public List<Topping> findAllToppings(Topping topping) {
+    public List<Topping> findAllToppings() {
         return toppingRepository.findAll();
     }
     public Optional<Topping> findToppingById(int id) {
         return toppingRepository.findById(id);
     }
-
 
 
 

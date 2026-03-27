@@ -34,11 +34,6 @@ public class UserController {
 
         @PostMapping("/register/success")
         public String handleRegisterForm(@ModelAttribute("user") User user, Model model) {
-            /*userService.createUser(user);
-            model.addAttribute("user", user.getName());
-            model.addAttribute("email", user.getEmail());
-            model.addAttribute("address", user.getAddress());
-            return "success";*/
             List<String> errors = userService.createUser(user);
 
             if (!errors.isEmpty()) {

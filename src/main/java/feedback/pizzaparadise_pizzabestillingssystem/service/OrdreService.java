@@ -2,11 +2,10 @@ package feedback.pizzaparadise_pizzabestillingssystem.service;
 
 import feedback.pizzaparadise_pizzabestillingssystem.model.Ordre;
 import feedback.pizzaparadise_pizzabestillingssystem.model.Pizza;
-import feedback.pizzaparadise_pizzabestillingssystem.model.User;
+import feedback.pizzaparadise_pizzabestillingssystem.model.Topping;
 import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.OrdreRepository;
 import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.PizzaRepository;
-import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.UserRepository;
-import feedback.pizzaparadise_pizzabestillingssystem.service.ServiceValidation.OrdreServiceValidation;
+import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.ToppingRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,14 +16,14 @@ import java.util.Optional;
 public class OrdreService {
 
     private final OrdreRepository ordreRepository;
-
+    private final ToppingRepository toppingRepository;
     private final PizzaRepository pizzaRepository;
 
 
-    public OrdreService(OrdreRepository ordreRepository, PizzaRepository pizzaRepository) {
+    public OrdreService(OrdreRepository ordreRepository, PizzaRepository pizzaRepository, ToppingRepository  toppingRepository) {
         this.ordreRepository = ordreRepository;
         this.pizzaRepository = pizzaRepository;
-
+        this.toppingRepository = toppingRepository;
     }
 
     public List<Pizza> findPizzasOrderedByUser(int userId) {
@@ -61,5 +60,20 @@ public class OrdreService {
         ordreRepository.delete(ordreId);
     }
 
+    public double calculateTotalPrice(int pizzaId, List<Integer> toppingIds) {
+        Pizza pizza = pizzaRepository.findById(pizzaId).orElse(null);
+        if (pizza == null) return 0.0;
+
+        double total = pizza.getPrice();
+
+        // Add price of each chosen topping
+        for (int toppingId : toppingIds) {
+            Topping topping = toppingRepository.findById(toppingId).orElse(null);
+            if (topping != null) {
+                total += topping.getPrice();
+            }
+        }
+        return total;
+    }
 
 }

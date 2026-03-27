@@ -9,7 +9,7 @@
 -- INSERT INTO user (name, email, address, bonuspoints) VALUES ('Bob', 'bobby@gmail.com','Bobbystreet', 1);
 
 
-insert into ordre (date,totalprice,pizzaid,userid) values (NOW(),23,1,1);
-insert into ordre (date,totalprice,pizzaid,userid) values (NOW(),50,2,1);
+-- insert into ordre (date,totalprice,pizzaid,userid) values (NOW(),23,1,1);
+-- insert into ordre (date,totalprice,pizzaid,userid) values (NOW(),50,2,1);
 
 

@@ -1,6 +1,7 @@
 package feedback.pizzaparadise_pizzabestillingssystem.controller;
 
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,5 +19,12 @@ public class PizzaController {
     public String pizzapageMyOrders(Model model) {
         return "redirect:/myOrders";
     }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:";
+    }
+
 
 }

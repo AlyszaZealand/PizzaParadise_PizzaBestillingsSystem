@@ -1,7 +1,6 @@
 package feedback.pizzaparadise_pizzabestillingssystem.model.repositories;
 
 import feedback.pizzaparadise_pizzabestillingssystem.model.Ordre;
-import feedback.pizzaparadise_pizzabestillingssystem.model.User;
 
 import java.util.List;
 import java.util.Optional;

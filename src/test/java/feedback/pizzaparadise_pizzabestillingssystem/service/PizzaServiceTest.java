@@ -7,7 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ class PizzaServiceTest {
         assertEquals("Margherita", resultat.get(0).getName());
         assertEquals(65.0, resultat.get(0).getPrice());
 
-        assertEquals("Pepperoni", resultat.get(1).getName());
-        assertEquals(80.0, resultat.get(1).getPrice());
+        assertEquals("Hawaii", resultat.get(1).getName());
+        assertEquals(75.0, resultat.get(1).getPrice());
     }
 }

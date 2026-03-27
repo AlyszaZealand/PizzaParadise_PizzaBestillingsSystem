@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Bestil</title>
+    <title>Bestil Pizza</title>
 </head>
 <body>
-<h1>Bestil</h1>
+
+<h1>Bestil din pizza</h1>
+
+<form th:action="@{/bestil/success}" method="post">
+
+    <h2>Vælg en pizza</h2>
+    <select name="pizzaID" required>
+        <option value="">-- Vælg pizza --</option>
+        <option th:each="pizza : ${pizzas}"
+                th:value="${pizza.pizzaID}"
+                th:text="${pizza.name} + ' - ' + ${pizza.price} + ' kr.'">
+        </option>
+    </select>
+
+    <h2>Vælg toppings</h2>
+    <div th:each="topping : ${toppings}">
+        <input type="checkbox"
+               name="toppingIds"
+               th:value="${topping.toppingID}"
+               th:id="${'topping_' + topping.toppingID}">
+        <label th:for="${'topping_' + topping.toppingID}"
+               th:text="${topping.name} + ' +' + ${topping.price} + ' kr.'">
+        </label>
+    </div>
+
+    <br>
+    <button type="submit">Bestil</button>
+
+</form>
+
 </body>
 </html>

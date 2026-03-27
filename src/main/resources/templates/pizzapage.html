@@ -8,6 +8,11 @@
 <h1>Pizza!</h1>
 
 <a th:href="@{/myOrders}">Gå til dine ordre</a>
+<a th:href="@{/bestil}">Gå til bestilling</a>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Log ud</button>
+</form>
 
 <form th:action="@{/pizzapage/myOrders}" th:object="${user}" method="post">
 

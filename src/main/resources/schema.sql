@@ -1,8 +1,7 @@
--- CREATE TABLE IF NOT EXISTS topping ( ... );
--- CREATE TABLE IF NOT EXISTS pizza ( ... );
--- CREATE TABLE IF NOT EXISTS user ( ... );
--- CREATE TABLE IF NOT EXISTS ordre ( ... );
+-- CREATE database PizzaParadise_PizzaBestillingsSystem;
 --
+-- use PizzaParadise_PizzaBestillingsSystem;
+-- 
 -- CREATE TABLE topping (
 --                          id    INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 --                          name  VARCHAR(50) NOT NULL,
@@ -35,48 +34,26 @@
 --                        FOREIGN KEY (pizzaid) REFERENCES pizza(id),
 --                        FOREIGN KEY (userid)  REFERENCES user(id)
 -- );
-
-
-
-
--- DROP TABLE IF EXISTS pizza;
--- DROP TABLE IF EXISTS user;
--- DROP TABLE IF EXISTS ordre;
--- DROP table if exists topping;
 --
--- create table topping(
---                         id int primary key auto_increment not null,
---                         name varchar(50) not null,
---                         price double not null
--- );
+-- INSERT INTO user (email) VALUES ('bobby@gmail.com');
+-- INSERT INTO user (name, email, address, bonuspoints) VALUES ('Bob', 'bobby@gmail.com','Bobbystreet', 1);
 --
--- create table pizza(
---                       id int primary key auto_increment not null,
---                       name varchar(50) not null,
---                       description varchar(255) not null,
---                       price double not null,
---                       toppingId int,
---                       foreign key (toppingId) references topping(id)
--- );
+-- UPDATE user SET name = 'Bob', email = 'bobby@gmail.com', address = 'Bobbystreet', bonusPoint = 1;
 --
+-- ALTER TABLE user
+--     CHANGE COLUMN bonuspoints bonusPoint INT NOT NULL DEFAULT 0;
 --
--- create table user(
---                      id int primary key auto_increment not null,
---                      name varchar(50) not null,
---                      email varchar(50) not null,
---                      address varchar(255) not null,
---                      bonusPoints int
--- );
--- create table ordre(
---                       id int primary key auto_increment not null,
---                       date datetime,
---                       totalPrice double,
---                       pizzaid int,
---                       foreign key (pizzaid) references pizza(id),
---                       userid int,
---                       foreign key (userid) references user(id)
--- );
-
--- ALTER TABLE user ADD COLUMN userID INT AUTO_INCREMENT PRIMARY KEY;
--- ALTER TABLE user ADD COLUMN userID INT NOT NULL;
--- ALTER TABLE user ADD COLUMN userID INT NOT NULL REFERENCES user(id)
+-- SELECT * FROM user;
+--
+-- INSERT INTO pizza (name, description, price) VALUES ('Margherita', 'Classic tomato and cheese', 89.00);
+-- INSERT INTO pizza (name, description, price) VALUES ('Pepperoni', 'Tomato, cheese and pepperoni', 109.00);
+--
+-- insert into ordre (date,totalprice,pizzaid,userid) values (NOW(),23,1,1);
+-- insert into ordre (date,totalprice,pizzaid,userid) values (NOW(),50,2,1);
+--
+-- ALTER TABLE ordre
+--
+-- SELECT * FROM ordre;
+--
+-- DELETE FROM ordre WHERE id = 5;
+-- DELETE FROM ordre WHERE id = 6;
