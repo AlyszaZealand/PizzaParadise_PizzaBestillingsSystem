@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Min Ordrehistorik</title>
+</head>
+<body>
+    <a th:href="@{/pizzapage}"> tilbage </a>
+    <h1>Mine Pizzaer</h1>
+    <p th:if="${pizzas.isEmpty()}">Du har ikke bestilt nogen pizzaer endnu</p>
+    <ul>
+        <li th:each="enPizza : ${pizzas}">
+            <span th:text="${enPizza.name}">Test Navn</span> koster
+            <span th:text="${enPizza.price}">0</span> kr.
+        </li>
+    </ul>
+
+</body>
+</html>

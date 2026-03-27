@@ -8,8 +8,9 @@
 
 <h1>Login</h1>
 
-<form th:action="@{/login/success}" th:object="${user}" method="post">
 
+<form th:action="@{/login/pizzapage}" th:object="${user}" method="post">
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
     <div>
         <label for="email">Email</label>
         <input type="text" id="email" th:field="*{email}" required>

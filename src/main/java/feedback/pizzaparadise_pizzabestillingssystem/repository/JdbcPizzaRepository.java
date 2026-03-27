@@ -23,7 +23,7 @@ public class JdbcPizzaRepository implements PizzaRepository {
         String sql = """
                 SELECT id, name, description, price, toppingID
                 FROM pizza
-                ORDER BY title
+                ORDER BY name
                 """;
 
         return jdbcTemplate.query(sql, (rs, rowNum) ->

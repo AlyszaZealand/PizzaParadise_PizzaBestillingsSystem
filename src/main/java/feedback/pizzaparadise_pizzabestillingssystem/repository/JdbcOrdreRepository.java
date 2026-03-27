@@ -22,7 +22,7 @@ public class JdbcOrdreRepository implements OrdreRepository {
 
     //skal nok noget join for at vise pizza
     public List<Ordre> findOrderByUser(int userId) {
-        String sql = "SELECT id, date, totalprice, pizzaid, userid, FROM ORDRE WHERE id = ?";
+        String sql = "SELECT id, date, totalprice, pizzaid, userid FROM ORDRE WHERE userid = ?";
         return jdbcTemplate.query(sql,(rs,rowNum)-> new Ordre(
                         rs.getInt("id"),
                         rs.getInt("pizzaid"),

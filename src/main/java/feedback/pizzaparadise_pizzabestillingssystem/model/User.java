@@ -7,23 +7,23 @@ public class User {
     private String name;
     private String email;
     private String address;
-    private int bonuspoints = 0;
+    private int bonusPoint = 0;
 
     // Full Constructor with ID
-    public User(int userID, String name, String email, String address, int bonuspoints) {
+    public User(int userID, String name, String email, String address, int bonusPoint) {
         this.userID = userID;
         this.name = name;
         this.email = email;
         this.address = address;
-        this.bonuspoints = bonuspoints;
+        this.bonusPoint = bonusPoint;
     }
 
     // Full Constructor without ID
-    public User(String name, String email, String address, int bonuspoints) {
+    public User(String name, String email, String address, int bonusPoint) {
         this.name = name;
         this.email = email;
         this.address = address;
-        this.bonuspoints = bonuspoints;
+        this.bonusPoint = bonusPoint;
     }
 
     // Empty Constructor
@@ -63,11 +63,11 @@ public class User {
     }
 
     // GET & SET for Bonuspoints
-    public int getBonuspoints() {
-        return bonuspoints;
+    public int getBonusPoint() {
+        return bonusPoint;
     }
-    public void setBonuspoints(int bonuspoints) {
-        this.bonuspoints = bonuspoints;
+    public void setBonusPoint(int bonusPoint) {
+        this.bonusPoint = bonusPoint;
     }
 
 }

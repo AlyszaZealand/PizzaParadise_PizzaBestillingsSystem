@@ -26,28 +26,28 @@ public class JdbcUserRepository implements UserRepository {
                 name,
                 email,
                 address,
-                bonuspoints
-                FROM `user`
+                bonusPoint
+                FROM user
                 """;
         return jdbcTemplate.query(sql, (rs, rowNum) -> new User(
                         rs.getInt("UserID"),
                         rs.getString("name"),
                         rs.getString("email"),
                         rs.getString("address"),
-                        rs.getInt("bonuspoints")
+                        rs.getInt("bonusPoint")
                 ));
     }
 
 
     @Override
     public Optional<User> findById(int id) {
-        String sql = "SELECT id as userID, name, email, address, bonuspoints FROM `user` where id = ?";
+        String sql = "SELECT id as userID, name, email, address, bonusPoint FROM user where id = ?";
         List<User> list = jdbcTemplate.query(sql, (rs, rowNum) -> new User(
                         rs.getInt("UserID"),
                         rs.getString("name"),
                         rs.getString("email"),
                         rs.getString("address"),
-                        rs.getInt("bonuspoints")
+                        rs.getInt("bonusPoint")
                 ), id);
 
         return list.isEmpty() ? Optional.empty() : Optional.of(list.get(0));
@@ -55,23 +55,23 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public void save(User user) {
-        String sql = "INSERT INTO `user` (name, email, address, bonusPoint) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO user (name, email, address, bonusPoint) VALUES(?, ?, ?, ?)";
         jdbcTemplate.update(sql,
                 user.getName(),
                 user.getEmail(),
                 user.getAddress(),
-                user.getBonuspoints()
+                user.getBonusPoint()
         );
     }
 
     @Override
     public void update(User user) {
-        String sql = "UPDATE `user` SET name = ?, email = ?, address = ?, bonusPoint = ? WHERE id = ?";
+        String sql = "UPDATE user SET name = ?, email = ?, address = ?, bonusPoint = ? WHERE id = ?";
         jdbcTemplate.update(sql,
                 user.getName(),
                 user.getEmail(),
                 user.getAddress(),
-                user.getBonuspoints(),
+                user.getBonusPoint(),
                 user.getUserID()
         );
     }
@@ -79,13 +79,13 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        String sql = "SELECT * FROM `user` WHERE email = ?";
+        String sql = "SELECT * FROM user WHERE email = ?";
         List <User> results = jdbcTemplate.query(sql, (rs, rowNum) -> new User(
                 rs.getInt("id"),
                 rs.getString("name"),
                 rs.getString("email"),
                 rs.getString("address"),
-                rs.getInt("bonuspoints")
+                rs.getInt("bonusPoint")
         ), email);
         return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
     }

@@ -7,6 +7,7 @@ import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.ToppingR
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PizzaService {
@@ -38,11 +39,11 @@ public class PizzaService {
     }
 
     // From topping repo
-    public void findAllToppings(Topping topping) {
-        toppingRepository.findAll();
+    public List<Topping> findAllToppings(Topping topping) {
+        return toppingRepository.findAll();
     }
-    public void findToppingById(int id) {
-        toppingRepository.findById(id);
+    public Optional<Topping> findToppingById(int id) {
+        return toppingRepository.findById(id);
     }
 
 

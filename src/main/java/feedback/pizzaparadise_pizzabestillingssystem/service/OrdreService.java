@@ -6,8 +6,10 @@ import feedback.pizzaparadise_pizzabestillingssystem.model.User;
 import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.OrdreRepository;
 import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.PizzaRepository;
 import feedback.pizzaparadise_pizzabestillingssystem.model.repositories.UserRepository;
+import feedback.pizzaparadise_pizzabestillingssystem.service.ServiceValidation.OrdreServiceValidation;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,39 +17,48 @@ import java.util.Optional;
 public class OrdreService {
 
     private final OrdreRepository ordreRepository;
-    private final UserRepository userRepository;
+
     private final PizzaRepository pizzaRepository;
-    private final UserService userService;
-    private final PizzaService pizzaService;
 
-    public OrdreService(OrdreRepository ordreRepository, UserRepository userRepository, PizzaRepository pizzaRepository, UserService userService, PizzaService pizzaService) {
+
+    public OrdreService(OrdreRepository ordreRepository, PizzaRepository pizzaRepository) {
         this.ordreRepository = ordreRepository;
-        this.userRepository = userRepository;
         this.pizzaRepository = pizzaRepository;
-        this.userService = userService;
-        this.pizzaService = pizzaService;
+
     }
 
-   /* public void findOrderByUser(User user){
-        Optional<User> currentUser = userService.findById(user.getUserID());
-        ordreRepository.findOrderByUser(currentUser.get().getUserID());
-        List<Pizza> currentOrders =
-    }*/
+    public List<Pizza> findPizzasOrderedByUser(int userId) {
+        List<Ordre> brugerensOrdrer = ordreRepository.findOrderByUser(userId);
 
-    public void getDate(Ordre ordre) {
-        ordre.getDate();
+        List<Pizza> bestiltePizzaer = new ArrayList<>();
+
+        for (Ordre ordre : brugerensOrdrer) {
+            Optional<Pizza> fundetPizza = pizzaRepository.findById(ordre.getPizzaID());
+            if (fundetPizza.isPresent()) {
+                bestiltePizzaer.add(fundetPizza.get());
+            }
+        }
+        return bestiltePizzaer;
     }
 
-    public void findAllOrdreById(Ordre ordre) {
-        ordreRepository.findById(ordre.getOrdreID());
+
+    public List<Ordre> findAllOrdreByUser(int userid) {
+        return ordreRepository.findOrderByUser(userid);
+    }
+
+    public Optional<Ordre> findById(int ordreId) {
+        return ordreRepository.findById(ordreId);
     }
 
     public void saveOrdre(Ordre ordre) {
+        if (ordre.getUserID() <= 0 || ordre.getPizzaID() <= 0) {
+            throw new IllegalArgumentException("Ordren skal være tilknyttet en gyldig bruger og pizza.");
+        }
         ordreRepository.save(ordre);
     }
 
-    public void deleteOrdre(Ordre ordre) {
-        ordreRepository.delete(ordre.getOrdreID());
+    public void deleteOrdre(int ordreId) {
+        ordreRepository.delete(ordreId);
     }
 
 

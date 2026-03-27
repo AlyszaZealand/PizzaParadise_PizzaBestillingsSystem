@@ -27,7 +27,7 @@ class UserTest {
         assertEquals("Bobbystreet69", user.getAddress());
 
         // Test Bonuspoints
-        assertEquals(1, user.getBonuspoints());
+        assertEquals(1, user.getBonusPoint());
     }
 
     @Test
@@ -50,7 +50,7 @@ class UserTest {
         assertEquals("Keldstreet420", user.getAddress());
 
         // Test Bonuspoints
-        assertEquals(2, user.getBonuspoints());
+        assertEquals(2, user.getBonusPoint());
     }
 
     @Test
@@ -64,7 +64,7 @@ class UserTest {
         assertEquals(null, user.getName());
 
         // Test Bonuspoints = null
-        assertEquals(0, user.getBonuspoints());
+        assertEquals(0, user.getBonusPoint());
     }
 
     @Test
@@ -78,10 +78,10 @@ class UserTest {
         assertEquals("GIGACHAD", user.getName());
 
         // Set Bonuspoints
-        user.setBonuspoints(10);
+        user.setBonusPoint(10);
 
         // Test Set Bonuspoints
-        assertEquals(10, user.getBonuspoints());
+        assertEquals(10, user.getBonusPoint());
     }
 
 }

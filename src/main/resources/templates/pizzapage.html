@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizza page</title>
+</head>
+<body>
+<h1>Pizza!</h1>
+
+<a th:href="@{/myOrders}">Gå til dine ordre</a>
+
+<form th:action="@{/pizzapage/myOrders}" th:object="${user}" method="post">
+
+</form>
+
+</body>
+</html>

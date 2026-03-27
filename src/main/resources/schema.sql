@@ -1,40 +1,40 @@
-CREATE TABLE IF NOT EXISTS topping ( ... );
-CREATE TABLE IF NOT EXISTS pizza ( ... );
-CREATE TABLE IF NOT EXISTS user ( ... );
-CREATE TABLE IF NOT EXISTS ordre ( ... );
-
-CREATE TABLE topping (
-                         id    INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-                         name  VARCHAR(50) NOT NULL,
-                         price DOUBLE      NOT NULL
-);
-
-CREATE TABLE pizza (
-                       id          INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-                       name        VARCHAR(50)  NOT NULL,
-                       description VARCHAR(255) NOT NULL,
-                       price       DOUBLE       NOT NULL,
-                       toppingId   INT,
-                       FOREIGN KEY (toppingId) REFERENCES topping(id)
-);
-
-CREATE TABLE user (
-                      id          INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-                      name        VARCHAR(50)  NOT NULL,
-                      email       VARCHAR(50)  NOT NULL UNIQUE,
-                      address     VARCHAR(255) NOT NULL,
-                      bonuspoints INT          NOT NULL DEFAULT 0
-);
-
-CREATE TABLE ordre (
-                       id         INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-                       date       DATETIME NOT NULL,
-                       totalprice DOUBLE   NOT NULL,
-                       pizzaid    INT,
-                       userid     INT,
-                       FOREIGN KEY (pizzaid) REFERENCES pizza(id),
-                       FOREIGN KEY (userid)  REFERENCES user(id)
-);
+-- CREATE TABLE IF NOT EXISTS topping ( ... );
+-- CREATE TABLE IF NOT EXISTS pizza ( ... );
+-- CREATE TABLE IF NOT EXISTS user ( ... );
+-- CREATE TABLE IF NOT EXISTS ordre ( ... );
+--
+-- CREATE TABLE topping (
+--                          id    INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--                          name  VARCHAR(50) NOT NULL,
+--                          price DOUBLE      NOT NULL
+-- );
+--
+-- CREATE TABLE pizza (
+--                        id          INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--                        name        VARCHAR(50)  NOT NULL,
+--                        description VARCHAR(255) NOT NULL,
+--                        price       DOUBLE       NOT NULL,
+--                        toppingId   INT,
+--                        FOREIGN KEY (toppingId) REFERENCES topping(id)
+-- );
+--
+-- CREATE TABLE user (
+--                       id          INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--                       name        VARCHAR(50)  NOT NULL,
+--                       email       VARCHAR(50)  NOT NULL UNIQUE,
+--                       address     VARCHAR(255) NOT NULL,
+--                       bonuspoints INT          NOT NULL DEFAULT 0
+-- );
+--
+-- CREATE TABLE ordre (
+--                        id         INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--                        date       DATETIME NOT NULL,
+--                        totalprice DOUBLE   NOT NULL,
+--                        pizzaid    INT,
+--                        userid     INT,
+--                        FOREIGN KEY (pizzaid) REFERENCES pizza(id),
+--                        FOREIGN KEY (userid)  REFERENCES user(id)
+-- );
 
 
 
